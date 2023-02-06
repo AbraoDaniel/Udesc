@@ -1,0 +1,118 @@
+#include <stdio.h>
+
+int main()
+{
+    int vetor[3][3] = {{8,6,7},{3,5,10},{9,2,7}}, i, j;
+    
+    for(i=0; i<3; i++){
+        for(j=0;j<3;j++){
+            printf("%4d", vetor[i][j]);
+        }
+        printf("\n");
+    }
+    
+    float media;
+    int soma = 0;
+
+    
+    for(i=0; i<3; i++){
+        for(j=0;j<3;j++){
+            soma+=vetor[i][j];
+        }
+    }
+    
+    printf("soma igual a: %d\n", soma);
+    
+    media = (float)soma/9;
+    
+    printf("media igual a: %.2f\n", media);
+    
+    int maior = vetor[0][0], menor = vetor[0][0];
+    
+    for(i=0; i<3; i++){
+        for(j=0;j<3;j++){
+            if(vetor[i][j] < menor){
+                menor = vetor[i][j];
+            } else if(vetor[i][j] > maior) {
+                maior = vetor[i][j];
+            }
+        }
+    }
+    
+    float media_aluno, aluno_media_maior, prova_maior_media;
+    int soma_aluno1 = 0, soma_aluno2 = 0, soma_aluno3 = 0;
+    
+    for(j=0;j<3;j++){
+        soma_aluno1+=vetor[0][j];
+        soma_aluno2+=vetor[1][j];
+        soma_aluno3+=vetor[2][j];
+    }
+    
+    float media1 = soma_aluno1/3;
+    float media2 = soma_aluno2/3;
+    float media3 = soma_aluno3/3;
+    
+    
+    float maior_media;
+    
+    if(media1 < media2){
+        if(media2 > media3){
+            maior_media = media2;
+        } else {
+            maior_media = media3;
+        }
+    } else if (media1 < media3){
+        if(media3 > media2){
+            maior_media = media3;
+        }
+    } else {
+        maior_media = media1;
+    }
+    
+    int soma_prova1 = 0, soma_prova2 = 0, soma_prova3 = 0;
+    
+    for(i=0;i<3;i++){
+        soma_prova1+=vetor[i][0];
+        soma_prova2+=vetor[i][1];
+        soma_prova3+=vetor[i][2];
+    }
+    
+    float media_p1, media_p2, media_p3;
+    
+    media_p1 = soma_prova1/3;
+    media_p2 = soma_prova2/3;
+    media_p3 = soma_prova3/3;
+ 
+    
+    float maior_media_prova;
+    
+    if(media_p1 < media_p2){
+        if(media_p2 > media_p3){
+            maior_media_prova = media_p2;
+        } else {
+            maior_media_prova = media_p3;
+        }
+    } else if (media_p1 < media_p3){
+        if(media_p3 > media_p2){
+            maior_media_prova = media_p3;
+        }
+    } else {
+        maior_media_prova = media_p1;
+    }
+    printf("a média das notas do primeiro aluno é: %.2f\n", media1);
+    printf("a média das notas do segundo aluno é: %.2f\n", media2);
+    printf("a média das notas do terceiro aluno é: %.2f\n", media3);
+    
+    printf("a média da primeira prova é: %.2f\n", media_p1);
+    printf("a média da primeira prova é: %.2f\n", media_p2);
+    printf("a média da primeira prova é: %.2f\n", media_p3);
+    
+    printf("menor nota igual a: %d\n", menor);
+    printf("maior nota igual a: %d\n", maior);
+    
+    printf("maior média de alunos igual a: %.2f\n", maior_media);
+    printf("maior média de provas: %.2f", maior_media_prova);
+    s
+    return 0;
+}
+

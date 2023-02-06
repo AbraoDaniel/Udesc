@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+float media2(float, float);
+
+int main()
+{
+    float n1, n2, media;
+    n1 = 4;
+    n2 = 10;
+    media = media2(n1, n2);
+    
+    printf("%f", media);
+    
+    return 0;
+}
+
+float media2(float a, float b) {
+    float media;
+    media = (a + b)/2.0;
+    return media;
+}

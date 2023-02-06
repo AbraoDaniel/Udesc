@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+  FILE *entrada, *saida;
+  char name_file[100], c;
+  
+  entrada = fopen("matriz.txt", "r");
+  
+  // Verificando se há a possibilidade de abrir
+  
+  if (entrada == NULL) {
+    printf("Ocorreu um erro ao tentar abrir o arquivo\n");
+    return -1;
+  }
+  
+  // Abrindo o arquivo de saída e realizando a cópia
+  
+  saida = fopen("saida.txt", "w");
+  c = fgetc(entrada);
+  while (c != EOF) {
+    fputc(c, saida);
+    c = fgetc(entrada);
+  }
+
+  printf("Concluído!\n");
+
+  // Realizando o fechamento dos arquivos
+  
+  fclose(entrada);
+  fclose(saida);
+  return 0;
+}
