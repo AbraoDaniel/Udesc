@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "Pilha.h"
 
 int precedencia (char *s);
@@ -56,7 +57,7 @@ int main(int argc, char *argv[])
                       if (pilha_vazia(p) || aux == 40) {
                          empilha(&p, caractere_atual);
                       } else {
-                         while ( le_topo(p, &aux) != ERRO_PILHA_VAZIA){  //  while ( le_topo(p, &aux) != ERRO_PILHA_VAZIA && precedencia(&aux) >= precedencia (&caractere_atual)) REVER A FUNÇÃO PRECEDÊNCIA PARA FUNCIONAR
+                         while ( le_topo(p, &aux) != ERRO_PILHA_VAZIA){  //  while ( le_topo(p, &aux) != ERRO_PILHA_VAZIA && precedencia(&aux) >= precedencia (&caractere_atual)) REVER A FUNï¿½ï¿½O PRECEDï¿½NCIA PARA FUNCIONAR
                                 desempilha(&p, &aux);
                                 saida[j] = aux;
                          }
@@ -64,7 +65,7 @@ int main(int argc, char *argv[])
                       }
                  break;
                  default:
-                     printf("Erro: caractere inválido: %c!", caractere_atual); 
+                     printf("Erro: caractere invï¿½lido: %c!", caractere_atual); 
               }
           }
           if(deu_erro == 0) {
@@ -78,7 +79,7 @@ int main(int argc, char *argv[])
                    printf("%c", saida[j]);   
                }
             } else {
-              printf(" Erro: '(' não foi fechado!");
+              printf(" Erro: '(' nï¿½o foi fechado!");
             }
           }
          }
