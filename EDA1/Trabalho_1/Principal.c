@@ -89,7 +89,6 @@ void posfixada(){
             
         }  
     }      
-    return 1;
 }
   
 void print_saida(){
