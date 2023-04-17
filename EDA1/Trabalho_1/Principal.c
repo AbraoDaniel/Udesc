@@ -3,22 +3,18 @@
 #include <string.h>
 #include "Pilha.h"
 
+char entrada[30];
+char saida [30];
+Pilha p;
 int precedencia (char *s);
 
 int main(int argc, char *argv[])
-{
-    char entrada[30];
-    char saida [30];
+{    
     int deu_erro = 0;
-    
     printf("Informe a conta que deseja realizar: ");
     
-    int w;
-    for(w = 0; w < strlen(entrada); w++) {
-          scanf("%s", &entrada[w]);
-    } 
-    
-    Pilha p;
+    fgets(entrada, 30, stdin);
+      
     inicializa_pilha( &p, strlen(entrada));
     
     int i, j, aux;
