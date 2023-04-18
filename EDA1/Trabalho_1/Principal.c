@@ -6,6 +6,7 @@
 char entrada[30];
 char saida [30];
 Pilha p;
+
 void posfixada();
 void print_saida();
 int precedencia (char *s);
@@ -15,7 +16,9 @@ int main(int argc, char *argv[]){
     // Entrada de dados
     printf("Informe a conta que deseja realizar:\n");
     fgets(entrada, 30, stdin);
-      
+
+    entrada[strcspn(entrada, "\n")] = 0;
+
     inicializa_pilha( &p, strlen(entrada));
     
     posfixada(); 
@@ -33,47 +36,65 @@ void posfixada(){
 
     while ( i < strlen(entrada) && entrada[i] != 0 && deu_erro == 0) {
         caractere_atual = entrada[i++];
-        
+        printf("%c\n", caractere_atual);
+
         // Analise do digito    
         switch(caractere_atual) {
             //espaço
             case ' ':
                 break;
             // (
-            case 40:
+            case '(':
                 empilha(&p, caractere_atual);
             break;
             // )
-            case 41:
-                while (le_topo(p, &aux) != 0 && aux != 40) {
+            case ')':
+                while (le_topo(p, &aux) != ERRO_PILHA_VAZIA && aux != '(') { //OLHA O PROBLEMA AQUI!
                     desempilha(&p, &aux);
                     saida[j++] = aux;
-                }
+                }    
                 if(pilha_vazia(p)) {
-                    printf("Erro: ')' sem '('!");
+                    printf("Erro: ')' sem '('! \n");
                     deu_erro = 1;
                 } else {
                     desempilha(&p, &aux);
                 }
             break;
             // + - / *
-            case '*' ... '/': 
+            case '+':
+            case '-':
+            case '/':
+            case '*': 
                 le_topo(p, &aux);
-                if (pilha_vazia(p) || aux == 40) {
+                if (pilha_vazia(p) || aux == '(') {
                     empilha(&p, caractere_atual);
                 } else {
-                    while (!pilha_vazia(p) && le_topo(p, &aux) != ERRO_PILHA_VAZIA){
+                    aux = caractere_atual + 48;
+                    while (le_topo(p, &aux) != ERRO_PILHA_VAZIA && precedencia(aux) >= precedencia(caractere_atual)){ //ADICIONAR A FUNÇÃO PRECEDÊNCIA
                         desempilha(&p, &aux);
                         saida[j++] = aux;
                     }  
                     empilha(&p, caractere_atual);
                 } 
                 break;
+
+                /*le_topo( P, &x );
+                24. SE ( P ESTÁ VAZIA ) OU ( x == '(' ) ENTÃO
+                25. EMPILHE c EM P;
+                26. SENÃO
+                27. ENQUANTO ( le_topo( P , &x ) != ERRO_VAZIA ) E
+                ( precedencia( x ) >= precedência( c ) ) FAÇA
+                28. DESEMPILHE de P para x;
+                29. Coloque x na string S;
+                30. FIMENQUANTO
+                31. EMPILHE c EM P;
+                32. FIMSE*/
+
             // 0-9
-            case 48 ... 57: 
+            case '0' ... '9': 
                 saida[j++] = caractere_atual; 
             break;
-            default:// default: ERRO, SEMPRE CAI NO CARACTERE INVALIDO!
+            default:
                 printf("Erro: caractere invalido: %c!", caractere_atual); 
                 deu_erro = 1;  
             break;
