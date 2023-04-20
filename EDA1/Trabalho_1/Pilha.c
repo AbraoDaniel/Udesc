@@ -39,7 +39,7 @@ int le_topo( Pilha p, int *info ){
 		return ERRO_PILHA_VAZIA;
 	
 	*info = p.dados[p.topo];
-	return 1; // Sucesso
+	return p.dados[p.topo]; // Sucesso
 }
 
 void mostra_pilha( Pilha p ){
