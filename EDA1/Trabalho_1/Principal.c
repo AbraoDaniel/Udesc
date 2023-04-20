@@ -23,10 +23,10 @@ int main()
     inicializa_pilha(&p, strlen(entrada));
 
     posfixada();
-    printf("Nosso resultado é esse:");
+    printf("Nossa equação posfixada é essa: ");
     print_saida();
     int solu = solucao();
-    printf("O valor final é = '%d'\n", solu);
+    printf("Nosso Resultado final é: '%d'\n", solu);
 
     return 0;
 }
@@ -80,7 +80,7 @@ void posfixada()
             break;
 
         default:
-            printf("Erro: caractere invalido: %c!", caractere_atual);
+            printf("Erro: caractere invalido: %c!\n", caractere_atual);
             deu_erro = 1;
             break;
         }
@@ -108,7 +108,7 @@ void print_saida()
     {
         printf("%c", saida[i++]);
     }
-    printf("\n\n\n");
+    printf("\n");
 }
 
 int precedencia(char s)
@@ -135,8 +135,7 @@ int solucao()
     {
         char caractere_atual = saida[i];
         if (caractere_atual >= 48 && caractere_atual <= 57)
-        { // Perguntar para o professor se essa verificação comprova que o caractere é um digito
-            // convertendo para um tipo inteiro
+        {
             int numero = caractere_atual - 48;
             result = numero;
             empilha(&p, numero);
