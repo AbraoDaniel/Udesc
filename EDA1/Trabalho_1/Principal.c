@@ -6,6 +6,7 @@
 char entrada[100];
 char saida[100];
 Pilha p;
+int deu_erro = 0;
 
 void posfixada();
 void print_saida();
@@ -23,21 +24,25 @@ int main()
     inicializa_pilha(&p, strlen(entrada));
 
     posfixada();
+    if(deu_erro > 0){
+        printf("Fim! \n");
+    } else{
     printf("Nossa equação posfixada é essa: ");
     print_saida();
     int solu = solucao();
     printf("Nosso Resultado final é: '%d'\n", solu);
+    }
+   
 
     return 0;
 }
 
 void posfixada()
 {
-    int j = 0;
-    int aux, deu_erro = 0;
+    int aux, j = 0;
     char caractere_atual;
 
-    for (int i = 0; i < strlen(entrada); i++)
+    for (int i = 0; i <= strlen(entrada); i++)
     {
         caractere_atual = entrada[i];
 
