@@ -59,7 +59,7 @@ int main()
     va[i] = 0;
   }
 
-  // INICIALIZA FILA
+  // INICIALIZANDO FILA
 
   Fila f;
   inicializa_fila(&f, n);
